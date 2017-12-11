@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Billing</title>
+  </head>
+    <body>
+      <form>
+        <!-- p>Dear {{ dataObject.userName }} , <br><br>
+           Please find attached copies of the invoices for the use of the equipment listed below for the month of {{month}}.
+        </p>
+        <p>If you have an questions please contact core facilties at ph: ###### or email: ######
+      </p>
+
+      <table style="width:100%">
+        <thead>
+          <tr><th style= "font-size = 15px">Service
+          </th><th style= "font-size = 15px">Start Time
+          </th><th style= "font-size = 15px">End Time
+          </th><th style= "font-size = 15px">Hours
+          </tr><th style= "font-size = 15px">Note
+          </th></tr>
+        </thead>
+          <tbody>
+            {% for name in dataObject.dataArray %}
+            <tr><td style= "text-align: center; font-size: 15px">
+              {{name.service}}
+            </td><td style= "text-align: center; font-size: 15px">
+              {{name.startTime}}
+            </td><td style= "text-align: center; font-size: 15px">
+              {{name.endTime}}
+            </td><td style= "text-align: center; font-size: 15px">
+              {{name.serviceHours}}
+            </td><td style= "text-align: center; font-size: 15px">
+              {{name.notes}}
+            </td></tr>
+            {% endfor %}
+          </tbody>
+      </table>
+
+
+      <p>Thank you for using our core facilities,</p>
+
+      <p>CCNY CoreLABS team</p>
+    </form>
+    </body>
+</html>

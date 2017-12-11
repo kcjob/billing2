@@ -1,0 +1,11 @@
+
+
+
+
+  {% for item in dataObject.dataArray %}
+    {{dump(item.service)}};
+  {% endfor %}
+
+
+{#{dump(msgData["John Smith"].dataArray[0]['service'])}#}
+{#{dump(msgData["Marry Doe"].dataArray[0]['service'])}#}
