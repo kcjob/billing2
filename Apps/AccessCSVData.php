@@ -37,9 +37,9 @@ class AccessCSVData {
 
       } elseif (($line[2] != $billObject->userName) and is_numeric($line[1])){
 
-        echo '***************************' . "\r\n";
-        echo '*CONFIGURE AND SEND EMAIL *' . "\r\n";
-        echo 'ß**************************' . "\r\n";
+        //echo '***************************' . "\r\n";
+        //echo '*CONFIGURE AND SEND EMAIL *' . "\r\n";
+        //echo 'ß**************************' . "\r\n";
 
         EmailMessageGenerator::createEmail($billObject);
 
