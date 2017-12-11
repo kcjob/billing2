@@ -17,7 +17,6 @@ class EmailMessageGenerator
     $mailer = new \Swift_Mailer($transport);
 
         // create and register logger
-        //    $logger = new Swift_Plugins_Loggers_EchoLogger();
     $sentEmaillogger = new \Swift_Plugins_Loggers_ArrayLogger();
     $mailer->registerPlugin(new \Swift_Plugins_LoggerPlugin($sentEmaillogger));
 
@@ -37,13 +36,10 @@ class EmailMessageGenerator
 
     //echo $message->toString();
 
-    //var_dump(empty($msgDataObject->attachmentArray));
         // Send the message
     $mailer->send($message, $failures);
 
         // output log
     file_put_contents('data/sentEmails.log', $sentEmaillogger->dump());
-//var_dump($msgDataObject->attachmentArray);
-    //} //foreach
   }
 }
