@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <p>Dear <b>{{ dataObject.userName }}</b> , <br><br>
+    Please find attached copies of the invoices for the use of the equipment listed below for the month of <b>{{dataObject.month}}</b>.
+    </p>
+    <p>If you have an questions please contact core facilties at ph: ###### or email: ######
+    </p>
+    <br /><br />
+
+    <table>
+      <thead>
+        <tr><th>Service</th><th> &nbsp;&nbsp;
+        </th><th>Start Time</th><th> &nbsp;&nbsp;
+        </th><th>End Time</th><th> &nbsp;&nbsp;
+        </th><th>Hours</th><th> &nbsp;&nbsp;
+        </th><th>Note</th><th> &nbsp;&nbsp;
+        </th></tr>
+      </thead>
+      <tbody>
+        {% for name in dataObject.serviceInfoArray %}
+          <tr><td>
+            {{name.service}}</td><td> &nbsp;&nbsp;
+          </td><td>
+            {{name.startTime}}</td><td> &nbsp;&nbsp;
+          </td><td>
+            {{name.endTime}}</td><td> &nbsp;&nbsp;
+          </td><td>
+            {{name.serviceHours}}</td><td> &nbsp;&nbsp;
+          </td><td>
+            {{name.notes}}</td><td> &nbsp;&nbsp;
+          </td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <p>Thank you for using our core facilities,</p>
+
+    <p>CCNY CoreLABS team</p>
+
+{% endblock %}
