@@ -18,9 +18,6 @@ class AccessCSVData {
     while($line = fgetcsv($fileHandle))
     {
       if (is_numeric($line[1]) and !$billObject->userName){
-        // echo "inside if \r\n";
-        // echo 'name: ' . $line[2] . "\r\n";
-        // echo 'PI Number: ' . $line[1] . "\r\n";
         $billObject -> userName = $line[2];
         $billObject -> userEmail = $line[3];
         $billObject -> month = date('F');
@@ -30,16 +27,7 @@ class AccessCSVData {
         if ($line[0]){
           array_push($billObject -> attachmentArray, $line[0]);
         }
-        // $count = 1;
-        // echo "pass: " . $count . "\r\n";
-        // $count++;
-
       } elseif (($line[2] == $billObject->userName) and is_numeric($line[1])){
-        // echo "inside 1st elseif \r\n";
-        // echo 'name: ' . $line[2] . "\r\n";
-        // echo 'PI Number: ' . $line[1] . "\r\n";
-        // echo "pass " . $count . "\r\n";
-        // $count++;
 
         array_push($billObject -> serviceInfoArray, ['service' => $billObject -> service = $line[5], 'startTime' => $billObject -> startTime = $line[6], 'endTime' => $billObject -> endTime = $line[7], 'serviceHours' => $billObject -> serviceHours = $line[8], 'notes' => $billObject -> notes = $line[9]]);
 
@@ -49,20 +37,17 @@ class AccessCSVData {
 
       } elseif (($line[2] != $billObject->userName) and is_numeric($line[1])){
 
-        //var_dump($billObject);
-
         //echo '***************************' . "\r\n";
         //echo '*CONFIGURE AND SEND EMAIL *' . "\r\n";
         //echo 'ß**************************' . "\r\n";
 
+     try {
         EmailMessageGenerator::createEmail($billObject);
-
-        // $count = 1;
-        // echo "inside 2nd elseif \r\n";
-        // echo "pass " . $count . "\r\n";
-        // $count++;
-        // echo 'name: ' . $line[2] . "\r\n";
-        // echo 'PI Number: ' . $line[1] . "\r\n";
+      } catch (Exception $e) {
+        $log->error($e->getMessage());
+        echo "Problem retriving data from file\r\n";
+        die();
+      }      
 
         $billObject = new billingDetails();
         $billObject -> userName = $line[2];
@@ -86,9 +71,6 @@ class AccessCSVData {
         $log->error($e->getMessage());
         echo "Problem retriving data from file\r\n";
         die();
-    }      
-    //var_dump($billObject);
-    //echo 'name: ' . $line[2] . "\r\n";
-    //echo 'PI Number: ' . $line[1] . "\r\n";
+    }
   }
 }
